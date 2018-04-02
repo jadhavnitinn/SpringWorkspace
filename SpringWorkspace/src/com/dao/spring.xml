@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd" >
+<beans>
+
+	<bean id="dbm"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/test"></property>
+		<property name="username" value="root"></property>
+	</bean>
+
+	<bean id="ds" class="org.springframework.jdbc.core.JdbcTemplate">
+
+		<property name="dataSource" ref="dbm"></property>
+
+	</bean>
+
+	<bean id="ee" class="com.dao.EmpDaoImpl">
+		<property name="jt" ref="ds"></property>
+	</bean>
+
+	<bean id="e" class="com.dao.EmpBean">
+		<property name="dao" ref="ee"></property>
+	</bean>
+
+	<bean id="m" class="com.dao.Emp"></bean>
+</beans>
